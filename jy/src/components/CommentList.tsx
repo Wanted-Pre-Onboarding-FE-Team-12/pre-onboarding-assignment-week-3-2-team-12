@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 // 임시 데이터 입니다. 코드 작성시 data 부분을 지워주세요
-const data = [
+/* const data = [
 	{
 		id: 1,
 		profile_url: 'https://picsum.photos/id/1/50/50',
@@ -9,22 +9,23 @@ const data = [
 		content: 'UI 테스트는 어떻게 진행하나요',
 		createdAt: '2020-05-01',
 	},
-];
+]; */
 
 function CommentList(): JSX.Element {
-	return data?.map((comment, key) => (
-		<Comment key={key}>
-			<img src={comment.profile_url} alt="" />
-			{comment.author}
-			<CreatedAt>{comment.createdAt}</CreatedAt>
-			<Content>{comment.content}</Content>
+	// return data?.map((comment, key) => (
+	return (
+		<Comment>
+			<img src="https://picsum.photos/id/1/50/50" alt="profile img" />
+			abc_1
+			<CreatedAt>2020-05-01</CreatedAt>
+			<Content>UI 테스트는 어떻게 진행하나요</Content>
 			<Button>
 				<a>수정</a>
 				<a>삭제</a>
 			</Button>
 			<hr />
 		</Comment>
-	));
+	);
 }
 
 export default CommentList;

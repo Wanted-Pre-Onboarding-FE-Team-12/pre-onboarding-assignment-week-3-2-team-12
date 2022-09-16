@@ -1,13 +1,13 @@
-import CommentListContainer from './containers/CommentListContainer';
-import PageListContainer from './containers/PageListContainer';
-import FormContainer from './containers/FormContainer';
+// import CommentListContainer from './containers/CommentListContainer';
+// import PageListContainer from './containers/PageListContainer';
+// import FormContainer from './containers/FormContainer';
 
 function App(): JSX.Element {
 	return (
 		<div>
-			<CommentListContainer />
+			{/* <CommentListContainer />
 			<PageListContainer />
-			<FormContainer />
+			<FormContainer /> */}
 		</div>
 	);
 }

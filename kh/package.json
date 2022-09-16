@@ -1,0 +1,52 @@
+{
+  "name": "myreact",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^7.0.0-alpha.3",
+    "@reduxjs/toolkit": "^1.8.5",
+    "axios": "^0.27.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-redux": "^7.2.8",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "redux-logger": "^3.0.6",
+    "styled-components": "^5.3.5"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "postinstall": "cd .. && husky install kh/.husky",
+    "format": "prettier --cache --write .",
+    "lint": "eslint --cache .",
+    "api": "json-server --watch data.json --port 4000"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "craco-alias": "^3.0.1",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1"
+  }
+}

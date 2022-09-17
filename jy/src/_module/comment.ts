@@ -1,6 +1,5 @@
 import { getCommentsApi } from './../_api/commentAPI';
 /** Ducks pattern */
-import { Comment } from 'types/types';
 // import { isCommentsData } from 'util/typeGuard';
 
 /**
@@ -65,14 +64,14 @@ export const deleteComment = (id: number) => {
 /**
  * 이 리덕스 모듈에서 관리 할 상태의 타입 선언
  */
-type CommentState = {
-	comments: Comment[];
-};
+interface ICommentState {
+	comments: IComment[];
+}
 
 /**
  * 초기 상태
  */
-const initialState: CommentState = {
+const initialState: ICommentState = {
 	comments: [],
 };
 
@@ -80,12 +79,12 @@ const initialState: CommentState = {
  * Reducer
  */
 const commentReducer = (
-	state: CommentState = initialState,
+	state: ICommentState = initialState,
 	action: { type: string; payload: unknown }
-): CommentState => {
+): ICommentState => {
 	switch (action.type) {
 		case GET_COMMENTS:
-			const payload = action.payload as Comment[];
+			const payload = action.payload as IComment[];
 			return { ...state, comments: payload };
 		case GET_COMMENT:
 			return { ...state };

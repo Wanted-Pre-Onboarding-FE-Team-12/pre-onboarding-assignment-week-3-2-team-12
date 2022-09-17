@@ -1,4 +1,4 @@
-export interface Comment {
+interface IComment {
 	id: number;
 	profile_url: string;
 	author: string;

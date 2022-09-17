@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import CommentListContainer from 'containers/CommentListContainer';
-// import PageListContainer from 'containers/PageListContainer';
 import FormContainer from 'containers/FormContainer';
-import { Comment } from 'types/types';
 import { getComments } from '_module/comment';
 import Loading from 'components/Loading/Loading';
 import PageButton from 'components/Button/PageButton';
@@ -11,7 +9,7 @@ import PageButton from 'components/Button/PageButton';
 const Main = () => {
 	const dispatch = useDispatch();
 	/** comments data state */
-	const [comments, setComments] = useState<Comment[]>([]);
+	const [comments, setComments] = useState<IComment[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {

@@ -21,17 +21,19 @@ const Page = styled.button`
   margin-right: 3px;
 `;
 
-function PageList({commentsPerPage, totalComments, pagenate}) {
+function PageList({ commentsPerPage, totalComments, pagenate }) {
   const pageArray = [];
 
-  for (let number = 1; number <= Math.ceil(totalComments/commentsPerPage); number++){
+  for (let number = 1; number <= Math.ceil(totalComments / commentsPerPage); number++) {
     pageArray.push(
       <Page key={number}>
-        <a onClick={()=>pagenate(number)} href='#' className="page-link">{number}</a>
+        <a onClick={() => pagenate(number)} href="#" className="page-link">
+          {number}
+        </a>
       </Page>,
     );
   }
-  
+
   return <PageListStyle>{pageArray}</PageListStyle>;
 }
 

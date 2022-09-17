@@ -36,8 +36,7 @@ const Button = styled.div`
   }
 `;
 
-function CommentList({commentList}) {
-
+function CommentList({ commentList }) {
   const handleClick = event => {
     //let commentId = event.target.parentElement.parentElement.id;
     if (event.target.className === 'commentDeleteButton') {

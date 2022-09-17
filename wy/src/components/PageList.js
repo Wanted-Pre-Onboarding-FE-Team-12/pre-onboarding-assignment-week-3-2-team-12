@@ -21,14 +21,17 @@ const Page = styled.button`
   margin-right: 3px;
 `;
 
-function PageList() {
+function PageList({commentsPerPage, totalComments, pagenate}) {
   const pageArray = [];
 
-  pageArray.push(
-    // 임시로 페이지 하나만 설정했습니다.
-    <Page key="1">1</Page>,
-  );
-
+  for (let number = 1; number <= Math.ceil(totalComments/commentsPerPage); number++){
+    pageArray.push(
+      <Page key={number}>
+        <a onClick={()=>pagenate(number)} href='#' className="page-link">{number}</a>
+      </Page>,
+    );
+  }
+  
   return <PageListStyle>{pageArray}</PageListStyle>;
 }
 

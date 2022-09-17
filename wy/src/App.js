@@ -5,8 +5,9 @@ import FormContainer from './containers/FormContainer';
 import getCommentList from './api/getCommentList';
 
 function App() {
-
   const [commentList, setCommentList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [commentsPerPage] = useState(5);
 
   async function fetchComments() {
     const fetchedComments = await getCommentList();
@@ -15,12 +16,22 @@ function App() {
 
   useEffect(() => {
     fetchComments();
-  });
+  },[]);
 
+  const indexOfLastComment = currentPage * commentsPerPage;
+  const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+  const currentComments = commentList.slice(indexOfFirstComment, indexOfLastComment);
+  
+  const pagenate = (pageNumber) => setCurrentPage(pageNumber);
+  
   return (
     <div>
-      <CommentListContainer commentList={commentList}/>
-      <PageListContainer />
+      <CommentListContainer commentList={currentComments} />
+      <PageListContainer 
+      commentsPerPage={commentsPerPage} 
+      totalComments={commentList.length}
+      pagenate={pagenate}
+      />
       <FormContainer />
     </div>
   );

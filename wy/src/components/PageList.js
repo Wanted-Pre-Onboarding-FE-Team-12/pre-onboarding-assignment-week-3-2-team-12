@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const PageListStyle = styled.div`
   margin-bottom: 20px;
@@ -26,7 +26,7 @@ function PageList() {
 
   pageArray.push(
     // 임시로 페이지 하나만 설정했습니다.
-    <Page key="1">1</Page>
+    <Page key="1">1</Page>,
   );
 
   return <PageListStyle>{pageArray}</PageListStyle>;

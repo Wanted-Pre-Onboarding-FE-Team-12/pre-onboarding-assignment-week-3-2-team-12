@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { makeDateFormat } from 'util/dataFormat';
 import SelectOption from 'components/SelectOption/SelectOption';
@@ -47,7 +47,7 @@ function Form(): JSX.Element {
 		try {
 			await createCommentApi(data);
 		} catch (error) {
-			console.log(error);
+			alert(error);
 		} finally {
 			handleResetState();
 			navigate('/');

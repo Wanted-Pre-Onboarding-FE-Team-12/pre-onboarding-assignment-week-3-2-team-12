@@ -21,3 +21,6 @@ export const createCommentApi = (data: IWriteCommentState) => {
 /** update comment */
 
 /** delete comment */
+export const deleteCommentApi = (id: number) => {
+	return axios.delete(`${BASE_URL}/comments/${id}`).then((response: AxiosResponse) => response);
+};

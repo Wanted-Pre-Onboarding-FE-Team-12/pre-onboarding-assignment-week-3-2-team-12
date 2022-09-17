@@ -1,4 +1,4 @@
-import { getCommentsApi } from './../_api/commentAPI';
+import { getCommentsApi, deleteCommentApi } from './../_api/commentAPI';
 /** Ducks pattern */
 // import { isCommentData } from 'util/typeGuard';
 
@@ -7,6 +7,7 @@ import { getCommentsApi } from './../_api/commentAPI';
  * as const: 액션 객체를 만들게 action.type의 값을 추론하는 과정에서 action.type이 string으로 추론되지 않고, 지정한 실제 문자열 값으로 추론 되도록 해주기 위해 처리
  * */
 const GET_COMMENTS = 'comment/GET_COMMENTS' as const; // GET /comments
+const DELETE_COMMENT = 'comment/DELETE_COMMENT' as const; // DELETE /comments/{commentId}
 
 /**
  * action create function
@@ -15,6 +16,13 @@ export const getComments = () => {
 	return getCommentsApi().then((response) => ({
 		type: GET_COMMENTS,
 		payload: response,
+	}));
+};
+
+export const deleteComment = (id: number) => {
+	return deleteCommentApi(id).then(() => ({
+		type: DELETE_COMMENT,
+		payload: id,
 	}));
 };
 
@@ -55,6 +63,10 @@ const commentReducer = (
 			const payload = action.payload as IComment[];
 			return { ...state, comments: payload };
 		}
+		case DELETE_COMMENT:
+			const deleteCommentId = action.payload as number;
+			const newComments = [...state.comments].filter((comment) => comment.id !== deleteCommentId);
+			return { ...state, comments: newComments };
 		default:
 			return state;
 	}

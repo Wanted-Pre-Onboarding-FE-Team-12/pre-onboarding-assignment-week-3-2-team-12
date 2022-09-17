@@ -10,6 +10,9 @@ export const getCommentsApi = (): Promise<IComment[]> => {
 };
 
 /** get comment */
+export const getCommentApi = (id: number): Promise<IComment> => {
+	return axios.get<IComment>(`${BASE_URL}/comments/${id}`).then((response) => response.data);
+};
 
 /** create comment */
 export const createCommentApi = (data: IWriteCommentState) => {
@@ -19,8 +22,15 @@ export const createCommentApi = (data: IWriteCommentState) => {
 };
 
 /** update comment */
+export const updateCommentApi = (id: number, data: IComment) => {
+	return axios
+		.put<IComment>(`${BASE_URL}/comments/${id}`, data)
+		.then((response: AxiosResponse) => response.data);
+};
 
 /** delete comment */
 export const deleteCommentApi = (id: number) => {
-	return axios.delete(`${BASE_URL}/comments/${id}`).then((response: AxiosResponse) => response);
+	return axios
+		.delete(`${BASE_URL}/comments/${id}`)
+		.then((response: AxiosResponse) => response.data);
 };

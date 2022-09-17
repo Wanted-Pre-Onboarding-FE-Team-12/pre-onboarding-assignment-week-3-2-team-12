@@ -21,7 +21,7 @@ const Main = (): JSX.Element => {
 					setComments(result.payload);
 				}
 			} catch (error) {
-				console.log(error);
+				alert(error);
 			} finally {
 				setIsLoading(false);
 			}

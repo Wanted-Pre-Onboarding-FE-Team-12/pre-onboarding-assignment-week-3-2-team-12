@@ -1,32 +1,61 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { deleteComment, isUpdateMode } from '_module/comment';
 import styled from 'styled-components';
-import { deleteComment } from '_module/comment';
 
 /**
  * 삭제
  * 	- 삭제 버튼을 클릭하면 alert으로 삭제할 것인지 묻고, 확인을 누를 경우, 서버로 삭제 요청을 보낸다.
  * 	- 삭제 요청 보내는 api 함수, 액션 객체, 리듀서 추가하기
  * 	- dispatch로 요청 보내기
+ *
+ * 수정
+ *  - 수정인지 나타내는 상태값 1개 필요
+ *  - 수정 버튼 클릭 시 입력 form에 작성한 글 내용들이 들어온다.
+ *  - 수정 모드 일 때 등록 버튼은 사라지고, 수정 | 취소 버튼으로 보이게 처리
+ *  - 수정 버튼 누르면 update 요청 보내기
+ *  - 취소 버튼 누르면 입력 form 값들 지우고 등록 버튼으로 변경
  */
 interface IProps {
 	comment: IComment;
 }
 
-const CommentItem = ({ comment: { profile_url, author, createdAt, content, id } }: IProps) => {
+const CommentItem = ({ comment }: IProps) => {
+	const { profile_url, author, createdAt, content, id } = comment;
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
+
+	// update 여부 상태값
+	const [isUpdate, setIsUpdate] = useState(false);
+
+	const handleIsUpdate = () => {
+		const targetValue = !isUpdate;
+		setIsUpdate(targetValue);
+		handleUpdateForm(targetValue);
+	};
+
+	// update 상태값 변경 함수
+	const handleUpdateForm = (targetValue: boolean) => {
+		const updateRequestCommentId = id;
+		dispatch(isUpdateMode(targetValue, updateRequestCommentId));
+	};
 
 	/** comment delete */
 	const handleDeleteComment = async () => {
+		// alert
+		const answer = alert('글을 삭제하시겠습니까?');
 		try {
-			dispatch(await deleteComment(id));
+			if (answer !== null) {
+				dispatch(await deleteComment(id));
+			}
 		} catch (error) {
 			alert(error);
 		} finally {
-			navigate('/');
 		}
 	};
+
+	/* const handleUpdateComment = () => {
+		console.log('글 수정 할게요');
+	}; */
 
 	return (
 		<CommentContainer>
@@ -35,7 +64,7 @@ const CommentItem = ({ comment: { profile_url, author, createdAt, content, id } 
 			<CreatedAt>{createdAt}</CreatedAt>
 			<Content>{content}</Content>
 			<Button>
-				<UpdateButton>수정</UpdateButton>
+				<UpdateButton onClick={handleIsUpdate}>{isUpdate ? '취소' : '수정'}</UpdateButton>
 				<DeleteButton onClick={handleDeleteComment}>삭제</DeleteButton>
 			</Button>
 		</CommentContainer>

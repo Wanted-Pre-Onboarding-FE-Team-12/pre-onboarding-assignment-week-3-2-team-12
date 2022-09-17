@@ -11,15 +11,8 @@
       "id": 2,
       "profile_url": "https://picsum.photos/id/2/50/50",
       "author": "abc_2",
-      "content": "막히면 대답은 빨리 해주나요",
+      "content": "막히면 대답은 빨리 해주나요?????",
       "createdAt": "2022-03-02"
-    },
-    {
-      "id": 3,
-      "profile_url": "https://picsum.photos/id/3/50/50",
-      "author": "abc_3",
-      "content": "코드에러가 발생했는데 어딘지 모르겠어요",
-      "createdAt": "2022-03-03"
     },
     {
       "id": 4,
@@ -153,6 +146,27 @@
       "author": "abc_22",
       "content": "주변에 React 개발자 있나요",
       "createdAt": "2022-03-22"
+    },
+    {
+      "profile_url": "https://picsum.photos/id/100/50/50",
+      "author": "test1",
+      "content": "test 글 sfdfsfsdfsd.",
+      "createdAt": "2022-09-17",
+      "id": 23
+    },
+    {
+      "profile_url": "https://picsum.photos/id/60/50/50",
+      "author": "111",
+      "content": "111",
+      "createdAt": "2022-09-18",
+      "id": 24
+    },
+    {
+      "profile_url": "https://picsum.photos/id/40/50/50",
+      "author": "testtest",
+      "content": "testtesttest",
+      "createdAt": "2022-09-18",
+      "id": 25
     }
   ]
 }

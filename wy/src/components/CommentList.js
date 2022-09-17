@@ -54,15 +54,14 @@ const data = [
 function CommentList() {
   const [commentList, setCommentList] = useState([]);
 
-  async function fetchComments(){
+  async function fetchComments() {
     const fetchedComments = await getCommentList();
-    console.log(fetchedComments)
-    setCommentList(fetchedComments)
+    setCommentList(fetchedComments);
   }
 
-  useEffect(()=>{
-    fetchComments()
-  })
+  useEffect(() => {
+    fetchComments();
+  });
   return commentList.map((comment, key) => (
     <Comment key={key}>
       <img src={comment.profile_url} alt="" />

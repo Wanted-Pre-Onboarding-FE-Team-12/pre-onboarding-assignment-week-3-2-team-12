@@ -1,9 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import { deleteComment } from '../api/deleteComment';
-import getCommentList from '../api/getCommentList';
 
 const Comment = styled.div`
   padding: 7px 10px;
@@ -39,29 +36,19 @@ const Button = styled.div`
   }
 `;
 
-function CommentList() {
-  const [commentList, setCommentList] = useState([]);
+function CommentList({commentList}) {
 
-  async function fetchComments() {
-    const fetchedComments = await getCommentList();
-    setCommentList(fetchedComments);
-  }
-
-  useEffect(() => {
-    fetchComments();
-  });
-
-  const handleClick = (event) => {
+  const handleClick = event => {
     //let commentId = event.target.parentElement.parentElement.id;
-    if(event.target.className === 'commentDeleteButton'){
+    if (event.target.className === 'commentDeleteButton') {
       // id값 어떻게 할 지 정해지면 그 아이디값으로 수정 필요‼🛑
-      deleteComment('commentId')
-    } else{
+      deleteComment('commentId');
+    } else {
       //modifyComment()
     }
-  }
+  };
   return commentList.map((comment, key) => (
-    <Comment key={key} >
+    <Comment key={key}>
       <img src={comment.profile_url} alt="" />
 
       {comment.author}
@@ -71,8 +58,8 @@ function CommentList() {
       <Content>{comment.content}</Content>
 
       <Button onClick={handleClick}>
-        <a className='commentModifyButton'>수정</a>
-        <a className='commentDeleteButton'>삭제</a>
+        <a className="commentModifyButton">수정</a>
+        <a className="commentDeleteButton">삭제</a>
       </Button>
 
       <hr />

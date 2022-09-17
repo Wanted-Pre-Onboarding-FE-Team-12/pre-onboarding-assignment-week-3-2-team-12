@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// 버튼 컴포넌트
 function PageList(): JSX.Element {
 	const pageArray = [];
 

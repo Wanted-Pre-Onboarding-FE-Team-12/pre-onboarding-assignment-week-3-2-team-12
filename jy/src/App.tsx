@@ -1,14 +1,17 @@
-// import CommentListContainer from './containers/CommentListContainer';
-// import PageListContainer from './containers/PageListContainer';
-// import FormContainer from './containers/FormContainer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { GlobalResetStyle } from 'styles/style';
+import GlobalNavigationBar from 'components/Navbar/GlobalNavigationBar';
+import Main from 'pages/Main/Main';
 
 function App(): JSX.Element {
 	return (
-		<div>
-			{/* <CommentListContainer />
-			<PageListContainer />
-			<FormContainer /> */}
-		</div>
+		<Router>
+			<GlobalResetStyle />
+			<GlobalNavigationBar />
+			<Routes>
+				<Route path="/" element={<Main />} />
+			</Routes>
+		</Router>
 	);
 }
 

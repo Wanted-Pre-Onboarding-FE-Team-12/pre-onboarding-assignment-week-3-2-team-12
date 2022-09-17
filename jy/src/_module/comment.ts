@@ -1,5 +1,7 @@
+import { getCommentsApi } from './../_api/commentAPI';
 /** Ducks pattern */
 import { Comment } from 'types/types';
+// import { isCommentsData } from 'util/typeGuard';
 
 /**
  * action type
@@ -15,10 +17,10 @@ const DELETE_COMMENT = 'comment/DELETE_COMMENT' as const; // DELETE /comments/{c
  * action create function
  */
 export const getComments = () => {
-	return {
+	return getCommentsApi().then((response) => ({
 		type: GET_COMMENTS,
-		payload: [],
-	};
+		payload: response,
+	}));
 };
 
 export const getComment = () => {
@@ -53,12 +55,12 @@ export const deleteComment = (id: number) => {
  * 모든 액션 객체들에 대한 타입 준비
  * ReturnType<typeof ____> : 특정 함수의 반환값을 추론
  */
-type CommentAction =
+/* type CommentAction =
 	| ReturnType<typeof getComments>
 	| ReturnType<typeof getComment>
 	| ReturnType<typeof createComment>
 	| ReturnType<typeof updateComment>
-	| ReturnType<typeof deleteComment>;
+	| ReturnType<typeof deleteComment>; */
 
 /**
  * 이 리덕스 모듈에서 관리 할 상태의 타입 선언
@@ -79,11 +81,12 @@ const initialState: CommentState = {
  */
 const commentReducer = (
 	state: CommentState = initialState,
-	action: CommentAction
+	action: { type: string; payload: unknown }
 ): CommentState => {
 	switch (action.type) {
 		case GET_COMMENTS:
-			return { ...state };
+			const payload = action.payload as Comment[];
+			return { ...state, comments: payload };
 		case GET_COMMENT:
 			return { ...state };
 		case CREATE_COMMENT:

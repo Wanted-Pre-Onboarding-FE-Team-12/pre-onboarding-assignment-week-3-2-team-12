@@ -27,7 +27,7 @@
 		"no-console": ["warn", { "allow": ["warn", "error", "info"] }],
 		"eqeqeq": "error",
 		"dot-notation": "error",
-		"no-unused-vars": "error",
+		"no-unused-vars": "off",
 		"max-len": [
 			2,
 			120,

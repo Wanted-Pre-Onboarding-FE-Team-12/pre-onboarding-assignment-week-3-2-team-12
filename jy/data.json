@@ -153,6 +153,20 @@
       "author": "abc_22",
       "content": "주변에 React 개발자 있나요",
       "createdAt": "2022-03-22"
+    },
+    {
+      "profile_url": "https://picsum.photos/id/60/50/50",
+      "author": "as",
+      "content": "as",
+      "createdAt": "2022-09-18",
+      "id": 23
+    },
+    {
+      "profile_url": "https://picsum.photos/id/599/50/50",
+      "author": "hi",
+      "content": "hohoho",
+      "createdAt": "2022-09-18",
+      "id": 24
     }
   ]
 }

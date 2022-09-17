@@ -9,7 +9,10 @@ export const GlobalResetStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-  input: {
+  input, select: {
+    outline: none;
+  }
+  input:focus, textarea:focus, select:focus {
     outline: none;
   }
 `;

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 const PageButton = () => {
-	return <Page>1</Page>;
+	return <Page active>1</Page>;
 };
 
 export default PageButton;
 
 /** style */
-const Page = styled.button`
+const Page = styled.button<{ active: boolean }>`
 	background-color: #e8eaf6;
 	cursor: pointer;
 	border: none;
@@ -15,4 +15,10 @@ const Page = styled.button`
 	outline: none;
 	padding: 0.8rem 1rem;
 	text-align: center;
+	${({ active }) =>
+		active &&
+		`
+		background-color: #0277bd;
+		color: #fff;
+	`}
 `;

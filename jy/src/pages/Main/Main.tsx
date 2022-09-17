@@ -6,7 +6,7 @@ import { getComments } from '_module/comment';
 import Loading from 'components/Loading/Loading';
 import PageButton from 'components/Button/PageButton';
 
-const Main = () => {
+const Main = (): JSX.Element => {
 	const dispatch = useDispatch();
 	/** comments data state */
 	const [comments, setComments] = useState<IComment[]>([]);
@@ -37,7 +37,6 @@ const Main = () => {
 			{comments.length !== 0 && (
 				<>
 					<CommentListContainer />
-					{/* <PageListContainer /> */}
 					<PageButton />
 					<FormContainer />
 				</>

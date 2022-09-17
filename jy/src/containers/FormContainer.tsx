@@ -1,7 +1,7 @@
-import Form from 'components/Form/Form';
+import WriteForm from 'components/Comment/WriteForm/WriteForm';
 
 function FormContainer(): JSX.Element {
-	return <Form />;
+	return <WriteForm />;
 }
 
 export default FormContainer;

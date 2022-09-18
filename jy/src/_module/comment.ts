@@ -31,7 +31,7 @@ export const deleteComment = (id: number) => {
 	}));
 };
 
-export const isUpdateMode = (isUpdateMode: boolean, updateRequestCommentId: number) => {
+export const isUpdateModeValue = (isUpdateMode: boolean, updateRequestCommentId: number) => {
 	return {
 		type: IS_UPDATE_MODE,
 		payload: { isUpdateMode, updateRequestCommentId },

@@ -18,9 +18,10 @@ import styled from 'styled-components';
  */
 interface IProps {
 	comment: IComment;
+	initializationPage: () => void;
 }
 
-const CommentItem = ({ comment }: IProps) => {
+const CommentItem = ({ comment, initializationPage }: IProps) => {
 	const { profile_url, author, createdAt, content, id } = comment;
 	const dispatch = useDispatch();
 
@@ -45,6 +46,8 @@ const CommentItem = ({ comment }: IProps) => {
 		try {
 			if (answer !== null) {
 				dispatch(await deleteComment(id));
+				/** init current page  */
+				initializationPage();
 			}
 		} catch (error) {
 			alert(error);

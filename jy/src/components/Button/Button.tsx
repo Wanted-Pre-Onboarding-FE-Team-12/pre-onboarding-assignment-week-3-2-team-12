@@ -4,11 +4,16 @@ interface IProps {
 	key?: number;
 	page: number;
 	handleUpdateCurrentPage: (page: number) => void;
+	currentPage: number;
 }
 
-const Button = ({ page, handleUpdateCurrentPage }: IProps) => {
+const Button = ({ page, handleUpdateCurrentPage, currentPage }: IProps) => {
 	return (
-		<ButtonStyle type="button" onClick={() => handleUpdateCurrentPage(page)}>
+		<ButtonStyle
+			type="button"
+			onClick={() => handleUpdateCurrentPage(page)}
+			style={{ backgroundColor: `${currentPage === page && '#7e57c2'}` }}
+		>
 			{page}
 		</ButtonStyle>
 	);

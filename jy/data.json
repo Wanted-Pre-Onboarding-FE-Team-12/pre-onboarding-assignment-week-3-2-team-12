@@ -8,23 +8,9 @@
   ],
   "comments": [
     {
-      "profile_url": "https://picsum.photos/id/401/50/50",
-      "author": "qw 수정해요",
-      "content": "qqqqw",
-      "createdAt": "2022-09-18",
-      "id": 3
-    },
-    {
-      "profile_url": "https://picsum.photos/id/40/50/50",
-      "author": "user1",
-      "content": "redux thunk 활용",
-      "createdAt": "2022-09-18",
-      "id": 4
-    },
-    {
       "profile_url": "https://picsum.photos/id/60/50/50",
       "author": "react tdd",
-      "content": "react tdd react tddreact tddreact tddreact tdd",
+      "content": "react test",
       "createdAt": "2022-09-18",
       "id": 5
     },
@@ -97,6 +83,34 @@
       "content": "test",
       "createdAt": "2022-09-18",
       "id": 15
+    },
+    {
+      "profile_url": "https://picsum.photos/id/278/50/50",
+      "author": "ㅎㅎ",
+      "content": "ㅎㅎ",
+      "createdAt": "2022-09-18",
+      "id": 16
+    },
+    {
+      "profile_url": "https://picsum.photos/id/405/50/50",
+      "author": "tdd",
+      "content": "tdd",
+      "createdAt": "2022-09-18",
+      "id": 17
+    },
+    {
+      "profile_url": "https://picsum.photos/id/357/50/50",
+      "author": "?",
+      "content": "?",
+      "createdAt": "2022-09-18",
+      "id": 18
+    },
+    {
+      "profile_url": "https://picsum.photos/id/60/50/50",
+      "author": "1",
+      "content": "1",
+      "createdAt": "2022-09-18",
+      "id": 19
     }
   ],
   "profile": {

@@ -12,10 +12,14 @@ const Main = (): JSX.Element => {
 	const [comments, setComments] = useState<IComment[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	/** currentPage state */
-	const [currentPage, setCurrentPage] = useState(1);
+	const [currentPage, setCurrentPage] = useState<number>(1);
 	/** currentPage 변경 함수 */
 	const handleUpdateCurrentPage = (page: number) => {
 		setCurrentPage(page);
+	};
+
+	const initializationPage = () => {
+		setCurrentPage(1);
 	};
 
 	useEffect(() => {
@@ -51,9 +55,12 @@ const Main = (): JSX.Element => {
 		<>
 			{comments.length !== 0 && (
 				<>
-					<CommentListContainer />
-					<PageContainer handleUpdateCurrentPage={handleUpdateCurrentPage} />
-					<FormContainer />
+					<CommentListContainer initializationPage={initializationPage} />
+					<PageContainer
+						handleUpdateCurrentPage={handleUpdateCurrentPage}
+						currentPage={currentPage}
+					/>
+					<FormContainer initializationPage={initializationPage} />
 				</>
 			)}
 		</>

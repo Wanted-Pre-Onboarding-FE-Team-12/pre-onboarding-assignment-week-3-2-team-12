@@ -1,7 +1,11 @@
 import CommentList from 'components/Comment/CommentList/CommentList';
 
-function CommentListContainer(): JSX.Element {
-	return <CommentList />;
+interface IProps {
+	initializationPage: () => void;
+}
+
+function CommentListContainer({ initializationPage }: IProps): JSX.Element {
+	return <CommentList initializationPage={initializationPage} />;
 }
 
 export default CommentListContainer;

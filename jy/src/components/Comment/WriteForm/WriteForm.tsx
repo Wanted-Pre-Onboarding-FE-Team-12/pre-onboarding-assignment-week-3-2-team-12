@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeDateFormat } from 'util/dataFormat';
 import SelectOption from 'components/SelectOption/SelectOption';
 import styled from 'styled-components';
 import { createCommentApi, getCommentApi } from '_api/commentAPI';
 import { RootState } from '_module';
 import { updateComment } from '_module/comment';
+
+interface IProps {
+	initializationPage: () => void;
+}
 
 /**
  * 글 작성 로직
@@ -19,7 +23,8 @@ import { updateComment } from '_module/comment';
  * 	1. 수정 모드이고, 1개의 코멘트가 있을 경우 컴포넌트 렌더링하는 부분 핸들링
  *	2. comment에 있는 값들을 value들에 넣어주기
  */
-function Form(): JSX.Element {
+function Form({ initializationPage }: IProps): JSX.Element {
+	const dispatch = useDispatch();
 	/** 글 수정모드인지 상태값 스토어에서 가져오기 */
 	const { isUpdateMode, updateRequestCommentId } = useSelector(({ comment }: RootState) => comment);
 	/** 1개의 comment state save */
@@ -59,7 +64,17 @@ function Form(): JSX.Element {
 
 	/** state initialize */
 	const handleResetState = () => {
-		setInputs({ profile_url: '', author: '', content: '', createdAt: makeDateFormat() });
+		if (isUpdateMode) {
+			setComment({
+				author: '',
+				content: '',
+				createdAt: '',
+				id: 0,
+				profile_url: '',
+			});
+		} else {
+			setInputs({ profile_url: '', author: '', content: '', createdAt: makeDateFormat() });
+		}
 	};
 
 	/** crate comment or update */
@@ -68,16 +83,16 @@ function Form(): JSX.Element {
 		try {
 			if (isUpdateMode) {
 				const data = { ...comment };
-				await updateComment(comment.id, data);
-				handleResetState();
+				await dispatch(await updateComment(comment.id, data));
 			} else {
 				const data = { ...values };
 				await createCommentApi(data);
-				handleResetState();
+				initializationPage();
 			}
 		} catch (error) {
 			alert(error);
 		} finally {
+			handleResetState();
 		}
 	};
 
@@ -139,7 +154,7 @@ export default Form;
 const WriteFormContainer = styled.div`
 	display: flex;
 	width: 100%;
-	background-color: pink;
+	background-color: #ede7f6;
 	padding: 3rem 0;
 
 	& > form {

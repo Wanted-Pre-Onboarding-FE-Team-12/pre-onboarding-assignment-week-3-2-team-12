@@ -3,11 +3,14 @@ import CommentListContainer from './containers/CommentListContainer';
 import PageListContainer from './containers/PageListContainer';
 import FormContainer from './containers/FormContainer';
 import getCommentList from './api/getCommentList';
+//import {useDispatch} from 'react-redux';
 
 function App() {
   const [commentList, setCommentList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [commentsPerPage] = useState(5);
+
+  //const dispatch = useDispatch();
 
   async function fetchComments() {
     const fetchedComments = await getCommentList();

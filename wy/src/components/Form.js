@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { postComment } from '../api/postComment';
 
 const FormStyle = styled.div`
   & > form {
@@ -11,7 +12,7 @@ const FormStyle = styled.div`
     width: 98%;
     height: 50px;
   }
-  & > form > input[type="text"] {
+  & > form > input[type='text'] {
     padding: 5px 1%;
     width: 98%;
     margin-bottom: 10px;
@@ -25,9 +26,21 @@ const FormStyle = styled.div`
 `;
 
 function Form() {
+  const handleSubmit = async event => {
+    event.preventDefault();
+    // id값은 임시로 해당 코멘트 생성날짜,시간으로 설정했습니다.
+    let newComment = { id: new Date().getTime() };
+    for (const child of event.target.children) {
+      if (child.nodeName !== 'BR' && child.nodeName !== 'BUTTON') {
+        newComment[child.name] = child.value;
+      }
+    }
+    await postComment(newComment);
+  };
+
   return (
     <FormStyle>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="profile_url"

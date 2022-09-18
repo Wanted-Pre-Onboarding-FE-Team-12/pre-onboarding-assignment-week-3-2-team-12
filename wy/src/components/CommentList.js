@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { deleteComment } from '../api/deleteComment';
 
 const Comment = styled.div`
   padding: 7px 10px;
@@ -35,19 +36,18 @@ const Button = styled.div`
   }
 `;
 
-// 임시 데이터 입니다. 코드 작성시 data 부분을 지워주세요
-const data = [
-  {
-    id: 1,
-    profile_url: "https://picsum.photos/id/1/50/50",
-    author: "abc_1",
-    content: "UI 테스트는 어떻게 진행하나요",
-    createdAt: "2020-05-01",
-  },
-];
+function CommentList({commentList}) {
 
-function CommentList() {
-  return data.map((comment, key) => (
+  const handleClick = event => {
+    //let commentId = event.target.parentElement.parentElement.id;
+    if (event.target.className === 'commentDeleteButton') {
+      // id값 어떻게 할 지 정해지면 그 아이디값으로 수정 필요‼🛑
+      deleteComment('commentId');
+    } else {
+      //modifyComment()
+    }
+  };
+  return commentList.map((comment, key) => (
     <Comment key={key}>
       <img src={comment.profile_url} alt="" />
 
@@ -57,9 +57,9 @@ function CommentList() {
 
       <Content>{comment.content}</Content>
 
-      <Button>
-        <a>수정</a>
-        <a>삭제</a>
+      <Button onClick={handleClick}>
+        <a className="commentModifyButton">수정</a>
+        <a className="commentDeleteButton">삭제</a>
       </Button>
 
       <hr />

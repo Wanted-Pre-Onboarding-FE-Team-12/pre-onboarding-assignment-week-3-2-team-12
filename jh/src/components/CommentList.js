@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchComment, deleteComment } from '../redux/reducers/commentSlice';
 import { updateListSlice } from '../redux/reducers/updateListSlice';
-import { createSlice } from '@reduxjs/toolkit';
 
 function CommentList() {
   const dispatch = useDispatch();
@@ -32,7 +31,6 @@ function CommentList() {
 
   return (
     <>
-      {/* {comments?.map((comment, key) => ( */}
       {comments?.slice(offset, offset + limit).map((comment, key) => (
         <Comment key={key}>
           <img src={comment.profile_url} alt="" />

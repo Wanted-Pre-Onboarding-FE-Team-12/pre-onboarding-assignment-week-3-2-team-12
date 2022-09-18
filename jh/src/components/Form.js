@@ -7,13 +7,13 @@ import styled from 'styled-components';
 
 function Form() {
   const dispatch = useDispatch();
-  const comments = useSelector(state => state.commentSlice);
+  const comments = useSelector((state) => state.commentSlice);
   const [profileURL, setProfileURL] = useState('');
   const [author, setAuthor] = useState('');
   const [content, setContent] = useState('');
   const [createdAt, setCreatedAt] = useState('');
 
-  const onPostComment = e => {
+  const onPostComment = (e) => {
     const userID = comments[comments.length - 1].id + 1;
     e.preventDefault();
     const newComment = {
@@ -38,7 +38,7 @@ function Form() {
           name="profile_url"
           placeholder="https://picsum.photos/id/1/50/50"
           value={profileURL}
-          onChange={e => setProfileURL(e.target.value)}
+          onChange={(e) => setProfileURL(e.target.value)}
         />
         <br />
         <input
@@ -46,7 +46,7 @@ function Form() {
           name="author"
           placeholder="작성자"
           value={author}
-          onChange={e => setAuthor(e.target.value)}
+          onChange={(e) => setAuthor(e.target.value)}
         />
         <br />
         <textarea
@@ -54,7 +54,7 @@ function Form() {
           placeholder="내용"
           required
           value={content}
-          onChange={e => setContent(e.target.value)}
+          onChange={(e) => setContent(e.target.value)}
         ></textarea>
         <br />
         <input
@@ -62,7 +62,7 @@ function Form() {
           name="createdAt"
           placeholder="2020-05-30"
           value={createdAt}
-          onChange={e => setCreatedAt(e.target.value)}
+          onChange={(e) => setCreatedAt(e.target.value)}
         />
         <br />
         <button type="submit">등록</button>

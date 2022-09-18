@@ -12,7 +12,6 @@ const Loading = () => {
 
 export default Loading;
 
-/** style */
 const LoadingKeyFrame = keyframes`
   0%, 100% {
     animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);

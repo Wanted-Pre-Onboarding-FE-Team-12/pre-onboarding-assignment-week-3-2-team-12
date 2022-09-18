@@ -9,7 +9,6 @@ interface IProps {
 }
 
 const PageList = ({ handleUpdateCurrentPage, currentPage }: IProps) => {
-	/** total page 가져와서 보여줄 한 페이지 당 보여줄 페이지 갯수로 나눠서 페이지 버튼 보여주기  */
 	const { totalCount } = useSelector(({ comment }: RootState) => comment);
 	const limit = 5;
 	const totalPage = Math.ceil(Number(totalCount) / limit);

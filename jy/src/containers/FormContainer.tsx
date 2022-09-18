@@ -1,4 +1,4 @@
-import WriteForm from 'components/Comment/WriteForm/WriteForm';
+import WriteForm from 'pages/Comment/WriteForm/WriteForm';
 
 interface IProps {
 	initializationPage: () => void;

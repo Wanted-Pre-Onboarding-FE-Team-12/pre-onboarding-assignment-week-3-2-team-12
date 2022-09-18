@@ -26,11 +26,6 @@ const Main = (): JSX.Element => {
 		const getCommentData = async () => {
 			try {
 				setIsLoading(true);
-				/** 기존 전체 comments 요청 함수 */
-				/* const result = dispatch(await getComments());
-				if (result) {
-					setComments(result.payload);
-				} */
 				const pageResult = dispatch(
 					await getPageNationComments({
 						page: currentPage,

@@ -35,10 +35,7 @@ export const deleteCommentApi = (id: number) => {
 		.then((response: AxiosResponse) => response.data);
 };
 
-/**
- * page nation
- * /comments?_page=${pageNumber}&_limit=${limitNumber}&_order=${desc}&_sort=${id}
- * */
+/** page nation */
 export const getPageNationCommentsApi = ({
 	page,
 	limitComments,

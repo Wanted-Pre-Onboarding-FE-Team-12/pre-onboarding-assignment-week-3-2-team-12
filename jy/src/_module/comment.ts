@@ -7,7 +7,6 @@ import {
 
 /**
  * action type
- * as const: 액션 객체를 만들게 action.type의 값을 추론하는 과정에서 action.type이 string으로 추론되지 않고, 지정한 실제 문자열 값으로 추론 되도록 해주기 위해 처리
  * */
 const GET_COMMENTS = 'comment/GET_COMMENTS' as const;
 const DELETE_COMMENT = 'comment/DELETE_COMMENT' as const;
@@ -82,10 +81,6 @@ const commentReducer = (
 			const newComments = [...state.comments].filter((comment) => comment.id !== deleteCommentId);
 			return { ...state, comments: newComments };
 		case IS_UPDATE_MODE:
-			/* const { isUpdateMode, updateRequestCommentId } = action.payload as {
-				isUpdateMode: boolean;
-				updateRequestCommentId: number;
-			}; */
 			const { isUpdateMode, updateRequestCommentId } = action.payload as ICommentState;
 			return {
 				...state,

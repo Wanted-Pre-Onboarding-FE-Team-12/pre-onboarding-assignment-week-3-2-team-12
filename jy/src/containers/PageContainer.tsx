@@ -1,4 +1,4 @@
-import PageList from 'components/Button/PageList';
+import PageList from 'components/Button/PageListButton';
 
 interface IProps {
 	handleUpdateCurrentPage: (pageNum: number) => void;

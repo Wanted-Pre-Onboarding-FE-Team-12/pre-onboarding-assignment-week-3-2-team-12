@@ -54,7 +54,49 @@ npm run start
 ## 2. 폴더구조
 
 ```sh
-
+src                               
+├─ _api                           
+│  └─ commentAPI.ts               
+├─ _module                        
+│  ├─ comment.ts                  
+│  ├─ configStore.ts              
+│  └─ index.ts                    
+├─ components                     
+│  ├─ Button                      
+│  │  ├─ Button.tsx               
+│  │  └─ PageList.tsx             
+│  ├─ Comment                     
+│  │  ├─ CommentItem              
+│  │  │  └─ CommentItem.tsx       
+│  │  ├─ CommentList              
+│  │  │  └─ CommentList.tsx       
+│  │  └─ WriteForm                
+│  │     └─ WriteForm.tsx         
+│  ├─ ListFilter                  
+│  │  └─ ListFilter.tsx           
+│  ├─ Loading                     
+│  │  └─ Loading.tsx              
+│  ├─ Navbar                      
+│  │  └─ GlobalNavigationBar.tsx  
+│  └─ SelectOption                
+│     └─ SelectOption.tsx         
+├─ containers                     
+│  ├─ CommentListContainer.tsx    
+│  ├─ FormContainer.tsx           
+│  └─ PageContainer.tsx           
+├─ pages                          
+│  └─ Main                        
+│     └─ Main.tsx                 
+├─ styles                         
+│  └─ style.ts                    
+├─ types                          
+│  └─ type.d.ts                   
+├─ util                           
+│  ├─ async.utill.ts              
+│  ├─ dataFormat.ts               
+│  └─ typeGuard.ts                
+├─ App.tsx                        
+└─ index.tsx
 ```
 
 <br/>

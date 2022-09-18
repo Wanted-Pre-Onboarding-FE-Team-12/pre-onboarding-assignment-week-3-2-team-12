@@ -1,10 +1,8 @@
-import axios from 'axios';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { instance } from '.';
 
 export async function postComment(comment) {
   try {
-    await axios.post(API_URL, comment);
+    await instance.post('/comments', comment);
   } catch (error) {
     console.log(error);
   }

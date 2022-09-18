@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { deleteComment, getComment, modifyComment } from '@redux/actions/comment';
 
 const initialState = {
+  isLoading: false,
   comments: [],
 };
 
@@ -19,10 +20,19 @@ export const commentSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(getComment.fulfilled, (state, action) => {})
+      .addCase(getComment.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.comments = action.payload;
+      })
       .addCase(deleteComment.fulfilled, (state, action) => {})
       .addCase(modifyComment.fulfilled, (state, action) => {})
-      .addMatcher(isPendingAction, state => {})
-      .addMatcher(isRejectedAction, (state, action) => {});
+      .addMatcher(isPendingAction, state => {
+        state.isLoading = true;
+      })
+      .addMatcher(isRejectedAction, (state, action) => {
+        state.isLoading = false;
+      });
   },
 });
+
+export default commentSlice.reducer;

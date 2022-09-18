@@ -18,12 +18,11 @@ import { updateComment } from '_module/comment';
  * 글 수정 로직
  * 	1. 수정 모드이고, 1개의 코멘트가 있을 경우 컴포넌트 렌더링하는 부분 핸들링
  *	2. comment에 있는 값들을 value들에 넣어주기
- *
  */
 function Form(): JSX.Element {
-	// 글 수정모드인지 상태값 스토어에서 가져오기
+	/** 글 수정모드인지 상태값 스토어에서 가져오기 */
 	const { isUpdateMode, updateRequestCommentId } = useSelector(({ comment }: RootState) => comment);
-	// 1개의 comment state save
+	/** 1개의 comment state save */
 	const [comment, setComment] = useState<IComment>({
 		author: '',
 		content: '',

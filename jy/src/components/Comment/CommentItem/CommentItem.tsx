@@ -24,7 +24,7 @@ const CommentItem = ({ comment }: IProps) => {
 	const { profile_url, author, createdAt, content, id } = comment;
 	const dispatch = useDispatch();
 
-	// update 여부 상태값
+	/** update 여부 상태값 */
 	const [isUpdate, setIsUpdate] = useState(false);
 
 	const handleIsUpdate = () => {
@@ -33,7 +33,7 @@ const CommentItem = ({ comment }: IProps) => {
 		handleUpdateForm(targetValue);
 	};
 
-	// update 상태값 변경 함수
+	/** update 상태값 변경 함수 */
 	const handleUpdateForm = (targetValue: boolean) => {
 		const updateRequestCommentId = id;
 		dispatch(isUpdateMode(targetValue, updateRequestCommentId));
@@ -41,7 +41,6 @@ const CommentItem = ({ comment }: IProps) => {
 
 	/** comment delete */
 	const handleDeleteComment = async () => {
-		// alert
 		const answer = alert('글을 삭제하시겠습니까?');
 		try {
 			if (answer !== null) {
@@ -52,10 +51,6 @@ const CommentItem = ({ comment }: IProps) => {
 		} finally {
 		}
 	};
-
-	/* const handleUpdateComment = () => {
-		console.log('글 수정 할게요');
-	}; */
 
 	return (
 		<CommentContainer>

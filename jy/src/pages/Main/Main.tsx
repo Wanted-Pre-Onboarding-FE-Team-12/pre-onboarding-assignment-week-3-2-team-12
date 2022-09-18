@@ -4,7 +4,7 @@ import CommentListContainer from 'containers/CommentListContainer';
 import FormContainer from 'containers/FormContainer';
 import { getComments } from '_module/comment';
 import Loading from 'components/Loading/Loading';
-import PageButton from 'components/Button/PageButton';
+import PageContainer from 'containers/PageContainer';
 
 const Main = (): JSX.Element => {
 	const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const Main = (): JSX.Element => {
 			{comments.length !== 0 && (
 				<>
 					<CommentListContainer />
-					<PageButton />
+					<PageContainer />
 					<FormContainer />
 				</>
 			)}

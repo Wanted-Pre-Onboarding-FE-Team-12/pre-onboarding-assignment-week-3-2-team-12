@@ -34,3 +34,18 @@ export const deleteCommentApi = (id: number) => {
 		.delete(`${BASE_URL}/comments/${id}`)
 		.then((response: AxiosResponse) => response.data);
 };
+
+/**
+ * page nation
+ * /comments?_page=${pageNumber}&_limit=${limitNumber}&_order=${desc}&_sort=${id}
+ * */
+export const getPageNationCommentsApi = ({
+	page,
+	limitComments,
+	orderType,
+	sortType,
+}: IPageRequest) => {
+	return axios.get(
+		`${BASE_URL}/comments?_page=${page}&_limit=${limitComments}&_order=${orderType}&_sort=${sortType}`
+	);
+};

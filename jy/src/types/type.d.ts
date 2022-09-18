@@ -12,3 +12,9 @@ interface IWriteCommentState {
 	content: string;
 	createdAt: string;
 }
+interface IPageRequest {
+	page: number;
+	limitComments: number;
+	orderType: string;
+	sortType: string | number;
+}

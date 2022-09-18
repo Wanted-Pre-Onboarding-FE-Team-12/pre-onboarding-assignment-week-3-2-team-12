@@ -39,7 +39,6 @@ const INITIAL_STATE = { commentList: [], isLoading: true };
 export default function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SET_COMMENT:
-      console.log(action.payload);
       return { commentList: [...action.payload], isLoading: false };
 
     case ADD_COMMENT:

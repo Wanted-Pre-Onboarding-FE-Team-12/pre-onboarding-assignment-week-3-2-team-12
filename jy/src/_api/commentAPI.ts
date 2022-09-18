@@ -45,7 +45,13 @@ export const getPageNationCommentsApi = ({
 	orderType,
 	sortType,
 }: IPageRequest) => {
-	return axios.get(
-		`${BASE_URL}/comments?_page=${page}&_limit=${limitComments}&_order=${orderType}&_sort=${sortType}`
-	);
+	return axios
+		.get(
+			`${BASE_URL}/comments?_page=${page}&_limit=${limitComments}&_order=${orderType}&_sort=${sortType}`
+		)
+		.then((response) => {
+			const totalCount = Number(response.headers['x-total-count']);
+			const responseData = [...response.data, totalCount];
+			return responseData;
+		});
 };

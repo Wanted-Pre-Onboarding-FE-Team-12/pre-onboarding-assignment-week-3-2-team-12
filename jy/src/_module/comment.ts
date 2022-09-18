@@ -57,6 +57,7 @@ interface ICommentState {
 	isUpdateMode: boolean;
 	updateRequestCommentId: number;
 	totalComments?: number;
+	totalCount: number;
 }
 
 const initialState: ICommentState = {
@@ -64,6 +65,7 @@ const initialState: ICommentState = {
 	isUpdateMode: false,
 	updateRequestCommentId: 0,
 	totalComments: 0,
+	totalCount: 0,
 };
 
 const commentReducer = (
@@ -101,7 +103,9 @@ const commentReducer = (
 				comments: copyComments,
 			};
 		case GET_PAGE_NATION_COMMENTS:
-			return { ...state, comments: action.payload as IComment[] };
+			const comments = action.payload as IComment[];
+			const totalCount = comments.splice(comments.length - 1)[0] as unknown as number;
+			return { ...state, comments: action.payload as IComment[], totalCount };
 		default:
 			return state;
 	}

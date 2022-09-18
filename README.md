@@ -2,6 +2,12 @@
 
 스파크펫 과제입니다.
 
+# 데모 링크
+
+### [🚀🚀 데모 보러가기](https://wanted-team12-sparkpet.netlify.app/)
+
+<br />
+
 # 목차
 
 - [실행](#1-실행)
@@ -26,9 +32,14 @@
 ## Tech Stack
 
 <div>
-    <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white">
-    <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-    <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
+
+- React
+- TypeScript
+- styled-components
+- redux
+- redux-thunk
+- redux-promise
+
 </div>
 
 <br/>
@@ -37,16 +48,12 @@
 ### 실행 방법
 
 ```sh
+cd jy
+
 npm install
 
 npm run start
 ```
-
-<br/>
-
-### 데모 링크
-
-### [🚀🚀 데모 보러가기]()
 
 <br/>
 <br/>
@@ -54,7 +61,49 @@ npm run start
 ## 2. 폴더구조
 
 ```sh
-
+src
+├─ _api
+│  └─ commentAPI.ts
+├─ _module
+│  ├─ comment.ts
+│  ├─ configStore.ts
+│  └─ index.ts
+├─ components
+│  ├─ Button
+│  │  ├─ Button.tsx
+│  │  └─ PageList.tsx
+│  ├─ Comment
+│  │  ├─ CommentItem
+│  │  │  └─ CommentItem.tsx
+│  │  ├─ CommentList
+│  │  │  └─ CommentList.tsx
+│  │  └─ WriteForm
+│  │     └─ WriteForm.tsx
+│  ├─ ListFilter
+│  │  └─ ListFilter.tsx
+│  ├─ Loading
+│  │  └─ Loading.tsx
+│  ├─ Navbar
+│  │  └─ GlobalNavigationBar.tsx
+│  └─ SelectOption
+│     └─ SelectOption.tsx
+├─ containers
+│  ├─ CommentListContainer.tsx
+│  ├─ FormContainer.tsx
+│  └─ PageContainer.tsx
+├─ pages
+│  └─ Main
+│     └─ Main.tsx
+├─ styles
+│  └─ style.ts
+├─ types
+│  └─ type.d.ts
+├─ util
+│  ├─ async.utill.ts
+│  ├─ dataFormat.ts
+│  └─ typeGuard.ts
+├─ App.tsx
+└─ index.tsx
 ```
 
 <br/>

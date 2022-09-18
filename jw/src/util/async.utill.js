@@ -3,6 +3,7 @@ export const reducerUtils = {
     loading: false,
     data,
     error: null,
+    page: 1,
   }),
   loading: (preveState = null) => ({
     data: preveState,

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { shallowEqual, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const PageListStyle = styled.div`
@@ -24,10 +25,18 @@ const Page = styled.button`
 function PageList() {
   const pageArray = [];
 
-  pageArray.push(
-    // 임시로 페이지 하나만 설정했습니다.
-    <Page key="1">1</Page>
+  const { page } = useSelector(
+    state => ({
+      page: state.comment.page,
+    }),
+    shallowEqual
   );
+  useEffect(() => {
+    pageArray.push(
+      // 임시로 페이지 하나만 설정했습니다.
+      <Page key="1">{page}</Page>
+    );
+  }, [page]);
 
   return <PageListStyle>{pageArray}</PageListStyle>;
 }

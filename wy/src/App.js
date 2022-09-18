@@ -7,10 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCommentList } from './redux/reducers/rootReducer';
 
 function App() {
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [commentsPerPage] = useState(5);
-
-  const dispatch = useDispatch();
 
   async function fetchComments() {
     const fetchedComments = await getCommentList();
@@ -29,6 +28,7 @@ function App() {
     return;
   }
 
+  //페이지네이션 위한 인덱스 설정
   const indexOfLastComment = currentPage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;
   const currentComments = commentList.slice(indexOfFirstComment, indexOfLastComment);

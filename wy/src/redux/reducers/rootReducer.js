@@ -1,3 +1,4 @@
+//액션 선언
 const SET_COMMENT = 'comment/SET_COMMENT';
 const ADD_COMMENT = 'comment/ADD_COMMENT';
 const DELETE_COMMENT = 'comment/DELETE_COMMENT';
@@ -32,6 +33,7 @@ export function modifyComment(comment, commentId) {
   };
 }
 
+// 리듀서 설정
 const INITIAL_STATE = { commentList: [], isLoading: true };
 
 export default function rootReducer(state = INITIAL_STATE, action) {

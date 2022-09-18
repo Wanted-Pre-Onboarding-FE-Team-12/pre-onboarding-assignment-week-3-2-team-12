@@ -8,30 +8,16 @@
   ],
   "comments": [
     {
-      "profile_url": "https://picsum.photos/id/60/50/50",
-      "author": "react tdd ₩1₩1₩1",
-      "content": "react test",
-      "createdAt": "2022-09-18",
-      "id": 5
-    },
-    {
-      "profile_url": "https://picsum.photos/id/340/50/50",
-      "author": "test",
-      "content": "test qwesdfsefds",
-      "createdAt": "2022-09-18",
-      "id": 6
-    },
-    {
       "profile_url": "https://picsum.photos/id/357/50/50",
-      "author": "d",
-      "content": "d",
+      "author": "qwert",
+      "content": "d 수정합니다. :::",
       "createdAt": "2022-09-18",
       "id": 7
     },
     {
       "profile_url": "https://picsum.photos/id/405/50/50",
       "author": "sdfsdf",
-      "content": "sdfsdfsdfsdf",
+      "content": "수정합니다.!!!",
       "createdAt": "2022-09-18",
       "id": 8
     },
@@ -44,8 +30,8 @@
     },
     {
       "profile_url": "https://picsum.photos/id/900/50/50",
-      "author": "123",
-      "content": "123",
+      "author": "123dfddddd",
+      "content": "ddddd\ntest입니다.",
       "createdAt": "2022-09-18",
       "id": 10
     },
@@ -58,7 +44,7 @@
     },
     {
       "profile_url": "https://picsum.photos/id/250/50/200",
-      "author": "tt",
+      "author": "ttㅎㅇㅎㅇㅎ",
       "content": "tt",
       "createdAt": "2022-09-18",
       "id": 12
@@ -79,38 +65,31 @@
     },
     {
       "profile_url": "https://picsum.photos/id/40/50/50",
-      "author": "test",
+      "author": "test 고양이",
       "content": "test",
       "createdAt": "2022-09-18",
       "id": 15
     },
     {
-      "profile_url": "https://picsum.photos/id/278/50/50",
-      "author": "ㅎㅎ",
-      "content": "ㅎㅎ",
+      "profile_url": "https://picsum.photos/id/401/50/50",
+      "author": "유지예",
+      "content": "리액트 리덕스 타입스크립트 적용",
       "createdAt": "2022-09-18",
-      "id": 16
+      "id": 20
     },
     {
-      "profile_url": "https://picsum.photos/id/405/50/50",
-      "author": "tdd",
-      "content": "tdd",
+      "profile_url": "https://picsum.photos/id/40/50/50",
+      "author": "고양이ㅇ",
+      "content": "고양이",
       "createdAt": "2022-09-18",
-      "id": 17
+      "id": 21
     },
     {
-      "profile_url": "https://picsum.photos/id/357/50/50",
-      "author": "?",
-      "content": "?",
+      "profile_url": "https://picsum.photos/id/401/50/50",
+      "author": "풍선",
+      "content": "풍선",
       "createdAt": "2022-09-18",
-      "id": 18
-    },
-    {
-      "profile_url": "https://picsum.photos/id/60/50/50",
-      "author": "1",
-      "content": "1",
-      "createdAt": "2022-09-18",
-      "id": 19
+      "id": 22
     }
   ],
   "profile": {

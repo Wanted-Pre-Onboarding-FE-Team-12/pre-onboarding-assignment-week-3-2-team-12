@@ -1,6 +1,7 @@
-import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { deleteComment, isUpdateMode } from '_module/comment';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteComment, isUpdateModeValue } from '_module/comment';
+import { RootState } from '_module';
 import styled from 'styled-components';
 interface IProps {
 	comment: IComment;
@@ -8,10 +9,12 @@ interface IProps {
 }
 
 const CommentItem = ({ comment, initializationPage }: IProps) => {
-	const { profile_url, author, createdAt, content, id } = comment;
 	const dispatch = useDispatch();
+	const { isUpdateMode } = useSelector(({ comment }: RootState) => comment);
+	const { profile_url, author, createdAt, content, id } = comment;
+	const updateRequestCommentId = id;
 
-	/** update 여부 상태값 */
+	/** comment update mode state */
 	const [isUpdate, setIsUpdate] = useState(false);
 
 	const handleIsUpdate = () => {
@@ -22,8 +25,7 @@ const CommentItem = ({ comment, initializationPage }: IProps) => {
 
 	/** update 상태값 변경 함수 */
 	const handleUpdateForm = (targetValue: boolean) => {
-		const updateRequestCommentId = id;
-		dispatch(isUpdateMode(targetValue, updateRequestCommentId));
+		dispatch(isUpdateModeValue(targetValue, updateRequestCommentId));
 	};
 
 	/** comment delete */
@@ -32,7 +34,7 @@ const CommentItem = ({ comment, initializationPage }: IProps) => {
 		try {
 			if (answer !== null) {
 				dispatch(await deleteComment(id));
-				/** init current page  */
+				/** init current page */
 				initializationPage();
 			}
 		} catch (error) {
@@ -44,11 +46,13 @@ const CommentItem = ({ comment, initializationPage }: IProps) => {
 	return (
 		<CommentContainer>
 			<img src={profile_url} alt="profile img" />
-			<span>{author}</span>
+			<span> {author}</span>
 			<CreatedAt>{createdAt}</CreatedAt>
 			<Content>{content}</Content>
 			<Button>
-				<UpdateButton onClick={handleIsUpdate}>{isUpdate ? '취소' : '수정'}</UpdateButton>
+				<UpdateButton onClick={handleIsUpdate}>
+					{isUpdate && isUpdateMode && id === updateRequestCommentId ? '취소' : '수정'}
+				</UpdateButton>
 				<DeleteButton onClick={handleDeleteComment}>삭제</DeleteButton>
 			</Button>
 		</CommentContainer>
@@ -62,7 +66,7 @@ const CommentContainer = styled.div`
 	padding: 7px 10px;
 	text-align: left;
 	border-radius: 10px;
-	padding: 1.5rem 1rem;
+	padding: 1.5rem;
 	margin-bottom: 1.5rem;
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
@@ -81,12 +85,12 @@ const CreatedAt = styled.div`
 `;
 
 const Content = styled.div`
-	margin: 10px 0;
+	margin-top: 1rem;
 `;
 
 const Button = styled.div`
 	text-align: right;
-	margin: 10px 0;
+	margin-top: 10px;
 
 	& > button {
 		margin-right: 10px;

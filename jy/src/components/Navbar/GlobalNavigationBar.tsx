@@ -8,7 +8,7 @@ export default GlobalNavigationBar;
 
 const Navigation = styled.nav`
 	padding: 2rem 1.5rem;
-	background-color: #01579b;
+	background-color: #9fa8da;
 	text-align: center;
 	font-weight: bold;
 	color: #fff;

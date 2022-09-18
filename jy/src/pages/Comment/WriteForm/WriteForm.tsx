@@ -5,8 +5,7 @@ import SelectOption from 'pages/SelectOption/SelectOption';
 import styled from 'styled-components';
 import { createCommentApi, getCommentApi } from '_api/commentAPI';
 import { RootState } from '_module';
-import { updateComment } from '_module/comment';
-
+import { updateComment, isUpdateModeValue } from '_module/comment';
 interface IProps {
 	initializationPage: () => void;
 }
@@ -79,6 +78,7 @@ function Form({ initializationPage }: IProps): JSX.Element {
 			alert(error);
 		} finally {
 			handleResetState();
+			dispatch(isUpdateModeValue(false, updateRequestCommentId));
 		}
 	};
 

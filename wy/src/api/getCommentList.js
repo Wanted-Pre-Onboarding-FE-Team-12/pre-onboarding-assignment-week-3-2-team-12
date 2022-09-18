@@ -1,11 +1,12 @@
-import axios from 'axios';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import { instance } from '.';
 
 export async function getCommentList() {
-  return axios.get(API_URL).then(response => {
+  try {
+    const response = await instance.get('/comments');
     return response.data;
-  });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default getCommentList;

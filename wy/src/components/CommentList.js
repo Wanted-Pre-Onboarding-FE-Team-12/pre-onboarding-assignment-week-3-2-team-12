@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { deleteComment } from '../api/deleteComment';
+//import { deleteComment } from '../api/deleteComment';
 
 const Comment = styled.div`
   padding: 7px 10px;
@@ -36,17 +36,16 @@ const Button = styled.div`
   }
 `;
 
-function CommentList({commentList}) {
-
-  const handleClick = event => {
-    //let commentId = event.target.parentElement.parentElement.id;
-    if (event.target.className === 'commentDeleteButton') {
-      // id값 어떻게 할 지 정해지면 그 아이디값으로 수정 필요‼🛑
-      deleteComment('commentId');
-    } else {
-      //modifyComment()
-    }
+function CommentList({ commentList }) {
+  /* 수정, 삭제 기능 구현 미완성, */
+  const handleModifyClick = event => {
+      //modifyComment('commentId');
+      return
   };
+  const handleDeleteClick = event => {
+    //deleteComment('commentId');
+    return
+  }
   return commentList.map((comment, key) => (
     <Comment key={key}>
       <img src={comment.profile_url} alt="" />
@@ -57,9 +56,9 @@ function CommentList({commentList}) {
 
       <Content>{comment.content}</Content>
 
-      <Button onClick={handleClick}>
-        <a className="commentModifyButton">수정</a>
-        <a className="commentDeleteButton">삭제</a>
+      <Button >
+        <a onClick={handleModifyClick}>수정</a>
+        <a onClick={handleDeleteClick}>삭제</a>
       </Button>
 
       <hr />

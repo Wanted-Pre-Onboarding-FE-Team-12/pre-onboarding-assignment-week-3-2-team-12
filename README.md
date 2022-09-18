@@ -131,3 +131,41 @@ const { data: comments, loading } = useSelector(
 ```
 
 - 기존의 useSelector 는 렌더링마다 새로운 객체를 만들어 낭비 렌더링이 일어나게 되지만 react-redux의 shallowEqual 함수로 겉에 있는 값들을 비교하여 변화를 감지해 필요한 상황에만 리렌더링 되게 구현하였습니다.
+
+<br/>
+
+### 이우윤  
+
+#### 댓글 불러오기 :
+
+```js
+async function fetchComments() {
+    const fetchedComments = await getCommentList();
+    dispatch(setCommentList(fetchedComments));
+  }
+
+  useEffect(() => {
+    fetchComments();
+  }, []);
+
+  const { commentList, isLoading } = useSelector(state => {
+    return state;
+  });
+  // 하단 코드 생략...
+```
+- fetching data를 action creator 이용해서 dispatching하고, useSelector로 불러오도록 단순한 Flux구조로 구현했습니다.
+
+#### 페이지네이션 구현:
+
+```js
+const [currentPage, setCurrentPage] = useState(1);
+const [commentsPerPage] = useState(5);
+//페이지네이션 위한 인덱스 설정
+const indexOfLastComment = currentPage * commentsPerPage;
+const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+const currentComments = commentList.slice(indexOfFirstComment, indexOfLastComment);
+
+const pagenate = pageNumber => setCurrentPage(pageNumber);
+```
+- 페이지별 인덱스 설정해 페이지네이션 설정했습니다.
+

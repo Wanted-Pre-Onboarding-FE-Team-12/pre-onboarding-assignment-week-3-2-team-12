@@ -1,0 +1,119 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "profile_url": "https://picsum.photos/id/60/50/50",
+      "author": "react tdd",
+      "content": "react test",
+      "createdAt": "2022-09-18",
+      "id": 5
+    },
+    {
+      "profile_url": "https://picsum.photos/id/340/50/50",
+      "author": "test",
+      "content": "test qwesdfsefds",
+      "createdAt": "2022-09-18",
+      "id": 6
+    },
+    {
+      "profile_url": "https://picsum.photos/id/357/50/50",
+      "author": "d",
+      "content": "d",
+      "createdAt": "2022-09-18",
+      "id": 7
+    },
+    {
+      "profile_url": "https://picsum.photos/id/405/50/50",
+      "author": "sdfsdf",
+      "content": "sdfsdfsdfsdf",
+      "createdAt": "2022-09-18",
+      "id": 8
+    },
+    {
+      "profile_url": "https://picsum.photos/id/278/50/50",
+      "author": "sefsdf",
+      "content": "sefsdfefsefds",
+      "createdAt": "2022-09-18",
+      "id": 9
+    },
+    {
+      "profile_url": "https://picsum.photos/id/900/50/50",
+      "author": "123",
+      "content": "123",
+      "createdAt": "2022-09-18",
+      "id": 10
+    },
+    {
+      "profile_url": "https://picsum.photos/id/278/50/50",
+      "author": "werwer",
+      "content": "werwerwer",
+      "createdAt": "2022-09-18",
+      "id": 11
+    },
+    {
+      "profile_url": "https://picsum.photos/id/250/50/200",
+      "author": "tt",
+      "content": "tt",
+      "createdAt": "2022-09-18",
+      "id": 12
+    },
+    {
+      "profile_url": "https://picsum.photos/id/401/50/50",
+      "author": "토토로",
+      "content": "이웃집 토토로랑 놀자 :)",
+      "createdAt": "2022-09-18",
+      "id": 13
+    },
+    {
+      "profile_url": "https://picsum.photos/id/340/50/50",
+      "author": ":)",
+      "content": "hello",
+      "createdAt": "2022-09-18",
+      "id": 14
+    },
+    {
+      "profile_url": "https://picsum.photos/id/40/50/50",
+      "author": "test",
+      "content": "test",
+      "createdAt": "2022-09-18",
+      "id": 15
+    },
+    {
+      "profile_url": "https://picsum.photos/id/278/50/50",
+      "author": "ㅎㅎ",
+      "content": "ㅎㅎ",
+      "createdAt": "2022-09-18",
+      "id": 16
+    },
+    {
+      "profile_url": "https://picsum.photos/id/405/50/50",
+      "author": "tdd",
+      "content": "tdd",
+      "createdAt": "2022-09-18",
+      "id": 17
+    },
+    {
+      "profile_url": "https://picsum.photos/id/357/50/50",
+      "author": "?",
+      "content": "?",
+      "createdAt": "2022-09-18",
+      "id": 18
+    },
+    {
+      "profile_url": "https://picsum.photos/id/60/50/50",
+      "author": "1",
+      "content": "1",
+      "createdAt": "2022-09-18",
+      "id": 19
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

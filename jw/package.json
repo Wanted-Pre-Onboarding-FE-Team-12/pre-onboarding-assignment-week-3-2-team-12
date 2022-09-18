@@ -20,7 +20,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api": "npx json-server ./data.json --port 4000"
+    "api": "npx json-server ./data.json --port 4000",
+    "postinstall": "cd .. && husky install jw/.husky",
+    "format": "prettier --cache --write .",
+    "lint": "eslint --cache ."
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1"
   }
 }

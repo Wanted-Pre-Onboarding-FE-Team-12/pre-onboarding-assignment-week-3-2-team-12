@@ -1,5 +1,6 @@
-import React from "react";
-import PageList from "../components/PageList";
+import React from 'react';
+
+import PageList from '../components/PageList';
 
 function PageListContainer() {
   return <PageList />;

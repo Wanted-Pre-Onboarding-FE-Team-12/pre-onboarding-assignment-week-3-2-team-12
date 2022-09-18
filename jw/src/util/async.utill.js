@@ -3,18 +3,19 @@ export const reducerUtils = {
     loading: false,
     data,
     error: null,
+    page: 1,
   }),
   loading: (preveState = null) => ({
     data: preveState,
     loading: true,
     error: null,
   }),
-  success: (data) => ({
+  success: data => ({
     data,
     loading: false,
     error: null,
   }),
-  error: (error) => ({
+  error: error => ({
     data: null,
     loading: false,
     error,

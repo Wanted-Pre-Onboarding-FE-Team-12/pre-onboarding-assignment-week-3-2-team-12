@@ -6,7 +6,6 @@ const GlobalNavigationBar = () => {
 
 export default GlobalNavigationBar;
 
-/** style */
 const Navigation = styled.nav`
 	padding: 2rem 1.5rem;
 	background-color: #01579b;

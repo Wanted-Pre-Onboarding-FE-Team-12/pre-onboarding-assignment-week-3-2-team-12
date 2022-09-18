@@ -1,4 +1,4 @@
-import CommentList from 'components/Comment/CommentList/CommentList';
+import CommentList from 'pages/Comment/CommentList/CommentList';
 
 interface IProps {
 	initializationPage: () => void;

@@ -21,7 +21,6 @@ const Button = ({ page, handleUpdateCurrentPage, currentPage }: IProps) => {
 
 export default Button;
 
-/** style */
 const ButtonStyle = styled.button`
 	background-color: #e8eaf6;
 	cursor: pointer;

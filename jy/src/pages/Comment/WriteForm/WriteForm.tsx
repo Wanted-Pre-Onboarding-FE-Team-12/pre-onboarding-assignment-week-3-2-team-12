@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeDateFormat } from 'util/dataFormat';
-import SelectOption from 'components/SelectOption/SelectOption';
+import SelectOption from 'pages/SelectOption/SelectOption';
 import styled from 'styled-components';
 import { createCommentApi, getCommentApi } from '_api/commentAPI';
 import { RootState } from '_module';
@@ -11,23 +11,10 @@ interface IProps {
 	initializationPage: () => void;
 }
 
-/**
- * 글 작성 로직
- * 	1. 4개의 입력창에 모두 값이 입력되어야 한다.
- * 		- 각각 input 창에 대한 state를 두고, 값이 onChange 일어날 때 마다 값을 update 해 준다.
- * 	2. 4개의 값이 모두 다 입력 됐을 때 등록 버튼이 활성화 된다.
- * 		- 4개의 값에 대한 유효성 검사(값이 비어 있지 않은지)
- * 	3. 값을 담아서 서버로 요청을 보낸다.
- *
- * 글 수정 로직
- * 	1. 수정 모드이고, 1개의 코멘트가 있을 경우 컴포넌트 렌더링하는 부분 핸들링
- *	2. comment에 있는 값들을 value들에 넣어주기
- */
 function Form({ initializationPage }: IProps): JSX.Element {
 	const dispatch = useDispatch();
-	/** 글 수정모드인지 상태값 스토어에서 가져오기 */
 	const { isUpdateMode, updateRequestCommentId } = useSelector(({ comment }: RootState) => comment);
-	/** 1개의 comment state save */
+	/** comment update form state  */
 	const [comment, setComment] = useState<IComment>({
 		author: '',
 		content: '',
@@ -36,8 +23,7 @@ function Form({ initializationPage }: IProps): JSX.Element {
 		profile_url: '',
 	});
 
-	/** create */
-	/** form values  */
+	/** comment create form state */
 	const [values, setInputs] = useState<IWriteCommentState>({
 		profile_url: '',
 		author: '',
@@ -96,8 +82,7 @@ function Form({ initializationPage }: IProps): JSX.Element {
 		}
 	};
 
-	/** update */
-	/**  1개의 글 목록 가져오는 요청 보내고, state 업데이트 하기 */
+	/** update일 때 해당 글 정보 가져오는 함수 */
 	const handleGetComment = async () => {
 		try {
 			const result = await getCommentApi(updateRequestCommentId);
@@ -142,7 +127,7 @@ function Form({ initializationPage }: IProps): JSX.Element {
 					disabled
 					onChange={handleChangeValue}
 				/>
-				<button type="submit">등록</button>
+				<SubmitButton type="submit">등록</SubmitButton>
 			</form>
 		</WriteFormContainer>
 	);
@@ -150,7 +135,6 @@ function Form({ initializationPage }: IProps): JSX.Element {
 
 export default Form;
 
-/** style */
 const WriteFormContainer = styled.div`
 	display: flex;
 	width: 100%;
@@ -165,7 +149,6 @@ const WriteFormContainer = styled.div`
 	}
 
 	& > {
-		background-color: yellow;
 		width: 470px;
 	}
 
@@ -184,5 +167,20 @@ const WriteFormContainer = styled.div`
 	& > form > textarea {
 		height: 4rem;
 		resize: none;
+	}
+`;
+
+const SubmitButton = styled.button`
+	padding: 1rem 1.5rem;
+	margin-top: 2rem;
+	background-color: #debfe8;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: bold;
+	:hover {
+		color: #fff;
+		background-color: #4a0072;
 	}
 `;

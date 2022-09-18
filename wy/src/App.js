@@ -3,23 +3,28 @@ import CommentListContainer from './containers/CommentListContainer';
 import PageListContainer from './containers/PageListContainer';
 import FormContainer from './containers/FormContainer';
 import getCommentList from './api/getCommentList';
-//import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import { setCommentList } from './redux/reducers/rootReducer';
 
 function App() {
-  const [commentList, setCommentList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [commentsPerPage] = useState(5);
 
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   async function fetchComments() {
     const fetchedComments = await getCommentList();
-    setCommentList(fetchedComments);
+    dispatch(setCommentList(fetchedComments));
   }
 
   useEffect(() => {
     fetchComments();
   }, []);
+
+  const {commentList, isLoading} = useSelector(state => {return state})
+  if(isLoading){
+    return
+  }
 
   const indexOfLastComment = currentPage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;

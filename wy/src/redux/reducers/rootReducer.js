@@ -32,17 +32,17 @@ export function modifyComment(comment, commentId) {
   };
 }
 
-const INITIAL_STATE = { commentList: [], isLoading:true };
+const INITIAL_STATE = { commentList: [], isLoading: true };
 
 export default function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SET_COMMENT:
-      console.log(action.payload)
-      return { commentList:[...action.payload], isLoading:false }
-/*
+      console.log(action.payload);
+      return { commentList: [...action.payload], isLoading: false };
+    
     case ADD_COMMENT:
-      return [...state.commentList, action.payload]
-
+      return { commentList: [...state.commentList, action.payload], isLoading: false };
+/*
     case DELETE_COMMENT:
       return state.commentList.map(comment => {
         if (comment.id !== action.payload) {

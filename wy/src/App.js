@@ -3,7 +3,7 @@ import CommentListContainer from './containers/CommentListContainer';
 import PageListContainer from './containers/PageListContainer';
 import FormContainer from './containers/FormContainer';
 import getCommentList from './api/getCommentList';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCommentList } from './redux/reducers/rootReducer';
 
 function App() {
@@ -21,9 +21,12 @@ function App() {
     fetchComments();
   }, []);
 
-  const {commentList, isLoading} = useSelector(state => {return state})
-  if(isLoading){
-    return
+  const { commentList, isLoading } = useSelector(state => {
+    return state;
+  });
+  //초기 빈 리스트로 동작하는 것 방지하려고 early return함. 별로인 느낌.. 수정 요망
+  if (isLoading) { 
+    return;
   }
 
   const indexOfLastComment = currentPage * commentsPerPage;

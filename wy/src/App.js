@@ -25,7 +25,7 @@ function App() {
     return state;
   });
   //초기 빈 리스트로 동작하는 것 방지하려고 early return함. 별로인 느낌.. 수정 요망
-  if (isLoading) { 
+  if (isLoading) {
     return;
   }
 

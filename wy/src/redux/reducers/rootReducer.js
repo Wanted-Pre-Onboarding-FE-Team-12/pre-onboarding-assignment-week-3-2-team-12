@@ -39,10 +39,10 @@ export default function rootReducer(state = INITIAL_STATE, action) {
     case SET_COMMENT:
       console.log(action.payload);
       return { commentList: [...action.payload], isLoading: false };
-    
+
     case ADD_COMMENT:
       return { commentList: [...state.commentList, action.payload], isLoading: false };
-/*
+    /*
     case DELETE_COMMENT:
       return state.commentList.map(comment => {
         if (comment.id !== action.payload) {

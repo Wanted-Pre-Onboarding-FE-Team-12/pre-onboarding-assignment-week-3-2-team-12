@@ -113,6 +113,21 @@ src
 
 ## 3.과제 달성 사항 및 해결 방법
 
-### 추가 기능
+### 정진우
 
-### 기능 개선이 필요하다고 생각된는 점
+#### 댓글 불러오기 :
+
+1. redux-thunk 적용 및 구현
+2. useSelector 최적화
+
+```js
+const { data: comments, loading } = useSelector(
+  (state) => ({
+    data: state.comment.data,
+    loading: state.comment.loading,
+  }),
+  shallowEqual
+);
+```
+
+- 기존의 useSelector 는 렌더링마다 새로운 객체를 만들어 낭비 렌더링이 일어나게 되지만 react-redux의 shallowEqual 함수로 겉에 있는 값들을 비교하여 변화를 감지해 필요한 상황에만 리렌더링 되게 구현하였습니다.

@@ -169,3 +169,48 @@ const pagenate = pageNumber => setCurrentPage(pageNumber);
 ```
 - 페이지별 인덱스 설정해 페이지네이션 설정했습니다.
 
+<br/>
+
+### 김재훈
+
+#### 댓글 불러오기, 삭제, 추가 : 
+redux-thunk 적용 및 구현
+
+```js
+export const fetchComment = createAsyncThunk('FETCH_COMMENT', async () => {
+  const response = await axios.get(URL);
+  return response.data;
+});
+
+export const deleteComment = createAsyncThunk('DELETE_COMMENT', async (id) => {
+  await axios.delete(`${URL}${id}`);
+});
+
+export const postComment = createAsyncThunk(
+  'POST_COMMENT',
+  async (newComment) => {
+    const response = await axios.post(URL, newComment);
+    return response.data;
+  }
+);
+
+export const commentSlice = createSlice({
+  name: 'comment',
+  initialState: [],
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchComment.fulfilled, (state, action) => [
+      ...action.payload,
+    ]);
+    builder.addCase(deleteComment.fulfilled, (state, action) =>
+      state.filter((comment) => comment.id !== action.payload)
+    );
+    builder.addCase(postComment.fulfilled, (state, action) => [
+      ...state,
+      action.payload,
+    ]);
+  },
+});
+```
+<br/>
+

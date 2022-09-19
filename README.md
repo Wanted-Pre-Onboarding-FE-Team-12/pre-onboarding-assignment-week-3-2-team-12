@@ -122,7 +122,7 @@ src
 
 ```js
 const { data: comments, loading } = useSelector(
-  (state) => ({
+  state => ({
     data: state.comment.data,
     loading: state.comment.loading,
   }),
@@ -134,25 +134,26 @@ const { data: comments, loading } = useSelector(
 
 <br/>
 
-### 이우윤  
+### 이우윤
 
 #### 댓글 불러오기 :
 
 ```js
 async function fetchComments() {
-    const fetchedComments = await getCommentList();
-    dispatch(setCommentList(fetchedComments));
-  }
+  const fetchedComments = await getCommentList();
+  dispatch(setCommentList(fetchedComments));
+}
 
-  useEffect(() => {
-    fetchComments();
-  }, []);
+useEffect(() => {
+  fetchComments();
+}, []);
 
-  const { commentList, isLoading } = useSelector(state => {
-    return state;
-  });
-  // 하단 코드 생략...
+const { commentList, isLoading } = useSelector(state => {
+  return state;
+});
+// 하단 코드 생략...
 ```
+
 - fetching data를 action creator 이용해서 dispatching하고, useSelector로 불러오도록 단순한 Flux구조로 구현했습니다.
 
 #### 페이지네이션 구현:
@@ -163,17 +164,22 @@ const [commentsPerPage] = useState(5);
 //페이지네이션 위한 인덱스 설정
 const indexOfLastComment = currentPage * commentsPerPage;
 const indexOfFirstComment = indexOfLastComment - commentsPerPage;
-const currentComments = commentList.slice(indexOfFirstComment, indexOfLastComment);
+const currentComments = commentList.slice(
+  indexOfFirstComment,
+  indexOfLastComment
+);
 
 const pagenate = pageNumber => setCurrentPage(pageNumber);
 ```
+
 - 페이지별 인덱스 설정해 페이지네이션 설정했습니다.
 
 <br/>
 
 ### 김재훈
 
-#### 댓글 불러오기, 삭제, 추가 : 
+#### 댓글 불러오기, 삭제, 추가 :
+
 redux-thunk 적용 및 구현
 
 ```js
@@ -182,13 +188,13 @@ export const fetchComment = createAsyncThunk('FETCH_COMMENT', async () => {
   return response.data;
 });
 
-export const deleteComment = createAsyncThunk('DELETE_COMMENT', async (id) => {
+export const deleteComment = createAsyncThunk('DELETE_COMMENT', async id => {
   await axios.delete(`${URL}${id}`);
 });
 
 export const postComment = createAsyncThunk(
   'POST_COMMENT',
-  async (newComment) => {
+  async newComment => {
     const response = await axios.post(URL, newComment);
     return response.data;
   }
@@ -198,12 +204,12 @@ export const commentSlice = createSlice({
   name: 'comment',
   initialState: [],
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder.addCase(fetchComment.fulfilled, (state, action) => [
       ...action.payload,
     ]);
     builder.addCase(deleteComment.fulfilled, (state, action) =>
-      state.filter((comment) => comment.id !== action.payload)
+      state.filter(comment => comment.id !== action.payload)
     );
     builder.addCase(postComment.fulfilled, (state, action) => [
       ...state,
@@ -212,5 +218,62 @@ export const commentSlice = createSlice({
   },
 });
 ```
+
 <br/>
 
+### 노기훈
+
+#### 댓글 불러오기 기능 구현
+
+<details>
+<summary> 1. redux-toolkit 적용</summary>
+
+```jsx
+function isPendingAction(action) {
+  return action.type.endsWith('/pending');
+}
+
+function isRejectedAction(action) {
+  return action.type.endsWith('/rejected');
+}
+
+export const commentSlice = createSlice({
+  name: 'comment',
+  initialState,
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(getComment.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.comments = action.payload;
+      })
+      .addMatcher(isPendingAction, state => {
+        state.isLoading = true;
+      })
+      .addMatcher(isRejectedAction, (state, action) => {
+        state.isLoading = false;
+      });
+  },
+});
+```
+
+</details>
+
+<details>
+<summary> 2. createAsynvThunk로 비동기 처리</summary>
+
+```jsx
+export const getComment = createAsyncThunk(
+  'comment/get',
+  async rejectWithValue => {
+    try {
+      const response = await commentApi.fetchGet();
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response);
+    }
+  }
+);
+```
+
+</details>

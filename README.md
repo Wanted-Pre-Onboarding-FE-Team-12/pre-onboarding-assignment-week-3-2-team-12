@@ -63,48 +63,47 @@ npm run start
 ## 2. 폴더구조
 
 ```sh
-src
-├─ _api
-│  └─ commentAPI.ts
-├─ _module
-│  ├─ comment.ts
-│  ├─ configStore.ts
-│  └─ index.ts
-├─ components
-│  ├─ Button
-│  │  ├─ Button.tsx
-│  │  └─ PageList.tsx
-│  ├─ Comment
-│  │  ├─ CommentItem
-│  │  │  └─ CommentItem.tsx
-│  │  ├─ CommentList
-│  │  │  └─ CommentList.tsx
-│  │  └─ WriteForm
-│  │     └─ WriteForm.tsx
-│  ├─ ListFilter
-│  │  └─ ListFilter.tsx
-│  ├─ Loading
-│  │  └─ Loading.tsx
-│  ├─ Navbar
-│  │  └─ GlobalNavigationBar.tsx
-│  └─ SelectOption
-│     └─ SelectOption.tsx
-├─ containers
-│  ├─ CommentListContainer.tsx
-│  ├─ FormContainer.tsx
-│  └─ PageContainer.tsx
-├─ pages
-│  └─ Main
-│     └─ Main.tsx
-├─ styles
-│  └─ style.ts
-├─ types
-│  └─ type.d.ts
-├─ util
-│  ├─ async.utill.ts
-│  ├─ dataFormat.ts
-│  └─ typeGuard.ts
-├─ App.tsx
+src                               
+├─ _api                           
+│  └─ commentAPI.ts               
+├─ _module                        
+│  ├─ comment.ts                  
+│  ├─ configStore.ts              
+│  └─ index.ts                    
+├─ components                     
+│  ├─ Button                      
+│  │  ├─ Button.tsx               
+│  │  └─ PageListButton.tsx       
+│  ├─ Loading                     
+│  │  ├─ Loading.css              
+│  │  └─ Loading.tsx              
+│  └─ Navbar                      
+│     └─ GlobalNavigationBar.tsx  
+├─ containers                     
+│  ├─ CommentListContainer.tsx    
+│  ├─ FormContainer.tsx           
+│  └─ PageContainer.tsx           
+├─ pages                          
+│  ├─ Comment                     
+│  │  ├─ CommentItem              
+│  │  │  └─ CommentItem.tsx       
+│  │  ├─ CommentList              
+│  │  │  └─ CommentList.tsx       
+│  │  └─ WriteForm                
+│  │     └─ WriteForm.tsx         
+│  ├─ Main                        
+│  │  └─ Main.tsx                 
+│  └─ SelectOption                
+│     └─ SelectOption.tsx         
+├─ styles                         
+│  └─ style.ts                    
+├─ types                          
+│  └─ type.d.ts                   
+├─ util                           
+│  ├─ async.utill.ts              
+│  ├─ dataFormat.ts               
+│  └─ typeGuard.ts                
+├─ App.tsx                        
 └─ index.tsx
 ```
 
@@ -277,3 +276,144 @@ export const getComment = createAsyncThunk(
 ```
 
 </details>
+
+### 유지예
+
+<details>
+<summary>1. redux-thunk, redux-promise 적용</summary>
+<br/>
+
+```js
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from '@redux-devtools/extension';
+import Thunk from 'redux-thunk';
+import Promise from 'redux-promise';
+import logger from 'redux-logger';
+import rootReducer from '_module';
+
+const configureStore = () => {
+	const store = createStore(
+		rootReducer,
+		composeWithDevTools(applyMiddleware(Thunk, Promise, logger))
+	);
+
+	return store;
+};
+
+export default configureStore;
+```
+
+</details>
+
+<details>
+<summary>2. 리덕스 모듈_Ducks Pattern 적용</summary>
+<br/>
+
+```js
+
+/**
+ * action type
+ * */
+const GET_COMMENTS = 'comment/GET_COMMENTS' as const;
+const DELETE_COMMENT = 'comment/DELETE_COMMENT' as const;
+const IS_UPDATE_MODE = 'IS_UPDATE_MODE' as const;
+const UPDATE_COMMENT = 'comment/UPDATE_COMMENT' as const;
+const GET_PAGE_NATION_COMMENTS = 'comment/GET_PAGE_NATION_COMMENTS' as const;
+
+/**
+ * action create function
+ */
+export const getComments = () => {
+	...
+};
+
+export const deleteComment = (id: number) => {
+  ...
+};
+
+export const isUpdateModeValue = (isUpdateMode: boolean, updateRequestCommentId: number) => {
+  ...
+};
+
+export const updateComment = (id: number, data: IComment) => {
+	...
+};
+
+export const getPageNationComments = (pageRequestInfo: IPageRequest) => {
+  return getPageNationCommentsApi(pageRequestInfo).then((response) => ({
+		type: GET_PAGE_NATION_COMMENTS,
+		payload: response,
+	}));
+};
+interface ICommentState {
+	comments: IComment[];
+	isUpdateMode: boolean;
+	updateRequestCommentId: number;
+	totalComments?: number;
+	totalCount: number;
+}
+
+const initialState: ICommentState = {
+	comments: [],
+	isUpdateMode: false,
+	updateRequestCommentId: 0,
+	totalComments: 0,
+	totalCount: 0,
+};
+
+const commentReducer = (
+	state: ICommentState = initialState,
+	action: { type: string; payload: unknown }
+): ICommentState => {
+	switch (action.type) {
+		case GET_COMMENTS: {
+			...
+		case DELETE_COMMENT:
+			...
+		case IS_UPDATE_MODE:
+			...
+		case UPDATE_COMMENT:
+			...
+		case GET_PAGE_NATION_COMMENTS:
+			const comments = action.payload as IComment[];
+			const totalCount = comments.splice(comments.length - 1)[0] as unknown as number;
+			return { ...state, comments: action.payload as IComment[], totalCount };
+		default:
+			return state;
+	}
+};
+
+export default commentReducer;
+
+```
+
+</details>
+
+<details>
+<summary>3. page nation</summary>
+<br/>
+- 기존 전체 리스트를 가져오는 /comments 에서 전체 게시글 수를 리덕스에 전역 상태로 관리
+- 페이지네이션 url 응답 결과의 headers에 담겨있는 'x-total-count'를 사용하여 페이지네이션 구현
+
+```js
+/** page nation */
+export const getPageNationCommentsApi = ({
+	page,
+	limitComments,
+	orderType,
+	sortType,
+}: IPageRequest) => {
+	return axios
+		.get(
+			`${BASE_URL}/comments?_page=${page}&_limit=${limitComments}&_order=${orderType}&_sort=${sortType}`
+		)
+		.then((response) => {
+			const totalCount = Number(response.headers['x-total-count']);
+			const responseData = [...response.data, totalCount];
+			return responseData;
+		});
+};
+```
+</details>
+
+4. 댓글 불러오기,작성, 수정, 삭제
